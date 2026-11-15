@@ -1707,3 +1707,44 @@ body { color: var(--text); font-family: var(--font); }
   color: transparent;
 }
 .lb-score small { color: var(--muted); font-size: 12px; }
+
+/* =========================================================
+   SILLIQ SCROLL (tezlik uchun)
+   ========================================================= */
+
+/* 1. Gradient fon: fixed o'rniga alohida qatlam */
+body,
+[data-theme="light"] body {
+  background: var(--bg);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(900px 500px at 10% -10%, rgba(108, 123, 255, 0.35), transparent 60%),
+    radial-gradient(800px 500px at 100% 0%, rgba(155, 92, 255, 0.3), transparent 60%);
+  transform: translateZ(0);
+}
+
+[data-theme="light"] body::before {
+  background:
+    radial-gradient(900px 500px at 10% -10%, rgba(108, 123, 255, 0.22), transparent 60%),
+    radial-gradient(800px 500px at 100% 0%, rgba(155, 92, 255, 0.16), transparent 60%);
+}
+
+/* 2. Blur qoladi, lekin alohida qatlamda ishlaydi */
+.header,
+.fav-btn,
+.auth-form,
+.create-form,
+.profile-side,
+.rate-box {
+  transform: translateZ(0);
+}
+
+.header { will-change: transform; backdrop-filter: blur(8px); }
+.fav-btn { backdrop-filter: blur(4px); }
